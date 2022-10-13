@@ -1,8 +1,8 @@
 <template>
     <div>
         <h2>Country list</h2>
-        <div>
-            <div>
+        <div class="columns">
+            <div class="column">
                 <ul v-for="country in countries">
                     <li>
                         <router-link :to="{name:'details', params:{alpha3Code:country.alpha3Code}}">
@@ -14,7 +14,7 @@
                     </li>
                 </ul>
             </div>
-            <div>
+            <div class="column">
                 <router-view></router-view>
             </div>
 

@@ -16,7 +16,7 @@
                 <h3>Borders</h3>
                 <p v-if="countryInfo.borders.length === 0">This country has no borders</p>
                 <div v-for="(border, index) in countryInfo.borders" :key="index">
-                    <router-link :to="`/list/${border}`">{{ border }}</router-link>
+                    <router-link :to="`/countries/${border}`">{{ border }}</router-link>
                 </div>
             </li>
         </ul>
@@ -27,17 +27,19 @@ import { computed, onMounted, ref, watch, } from "vue";
 import { useRoute } from 'vue-router';
 
 
-const alpha3Code = ref("");
+// const alpha3Code = ref("");
 const countryInfo = ref(undefined);
 const route = useRoute();
 
 const getCountryAlphaCode = async () => {
-    alpha3Code.value = route.params.alpha3Code;
+    // alpha3Code.value = route.params.alpha3Code;
     const res = await fetch(
-        `https://ih-countries-api.herokuapp.com/countries/${alpha3Code}`
+        `https://ih-countries-api.herokuapp.com/countries/${route.params.alpha3Code}`
     );
+    console.log(route.params.alpha3Code)
     const finalRes = await res.json();
     countryInfo.value = finalRes;
+    console.log(countryInfo)
 };
 
 
