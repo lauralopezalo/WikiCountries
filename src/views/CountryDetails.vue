@@ -1,7 +1,7 @@
 <template>
     <div v-if="countryInfo">
         <img :src="`https://flagcdn.com/w320/${countryInfo.alpha2Code.toLowerCase()}.png`"
-            alt="country flag" />
+            alt="country flag" class="flag"/>
         <h2>{{ countryInfo.name.common }}</h2>
         <ul>
             <li>
@@ -16,7 +16,8 @@
                 <h3>Borders</h3>
                 <p v-if="countryInfo.borders.length === 0">This country has no borders</p>
                 <div v-for="(border, index) in countryInfo.borders" :key="index">
-                    <router-link :to="`/countries/${border}`">{{ border }}</router-link>
+                    <!-- <router-link :to="`/countries/${border}`">{{ border }}</router-link> -->
+                    <router-link :to="{name:'details', params:{alpha3Code:border}}">{{ border }}</router-link>
                 </div>
             </li>
         </ul>
@@ -58,7 +59,8 @@ watch(countryCode, (newCountryCode) => {
 </script>
 
 <style scoped>
-img {
-    width: 100%;
+.flag {
+    width: 300px;
+    height: auto;
 }
 </style>

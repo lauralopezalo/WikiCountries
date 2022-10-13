@@ -2,7 +2,7 @@
     <div>
         <h2>Country list</h2>
         <div class="columns">
-            <div class="column">
+            <div class="column is-two-fifths">
                 <ul v-for="country in countries">
                     <li>
                         <router-link :to="{name:'details', params:{alpha3Code:country.alpha3Code}}">
