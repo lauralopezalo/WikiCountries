@@ -16,7 +16,6 @@
                 <h3>Borders</h3>
                 <p v-if="countryInfo.borders.length === 0">This country has no borders</p>
                 <div v-for="(border, index) in countryInfo.borders" :key="index">
-                    <!-- <router-link :to="`/countries/${border}`">{{ border }}</router-link> -->
                     <router-link :to="{name:'details', params:{alpha3Code:border}}">{{ border }}</router-link>
                 </div>
             </li>

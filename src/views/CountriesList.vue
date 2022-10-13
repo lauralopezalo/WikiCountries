@@ -3,7 +3,7 @@
         <h2>Country list</h2>
         <div class="columns">
             <div class="column is-two-fifths">
-                <ul v-for="country in countries">
+                <ul v-for="country in countriesList">
                     <li>
                         <router-link :to="{name:'details', params:{alpha3Code:country.alpha3Code}}">
                             <img class="flag"
@@ -28,8 +28,23 @@
 
 
 <script setup>
-import { defineProps } from 'vue';
-const props = defineProps(['countries'])
+import { ref, onMounted } from 'vue'
+
+const countriesList = ref(null);
+
+const fetchCountries = async () => {
+    const res = await fetch('https://ih-countries-api.herokuapp.com/countries');
+    const finalResponse = await res.json();
+    const sortedCountries = finalResponse.sort((a, b) => {
+        return a.name.common.localeCompare(b.name.common)
+    });
+    countriesList.value = sortedCountries
+};
+
+onMounted(() => {
+    fetchCountries();
+});
+
 
 </script>
 
